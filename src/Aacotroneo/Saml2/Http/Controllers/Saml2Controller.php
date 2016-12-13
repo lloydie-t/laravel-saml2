@@ -93,8 +93,10 @@ class Saml2Controller extends Controller
      */
     public function sls()
     {
-        $error = $this->saml2Auth->sls($this->idp, Config::get('saml2_settings.retrieveParametersFromServer'));
-        if (!empty($error)) {
+        $errors = $this->saml2Auth->sls($this->idp, Config::get('saml2_settings.retrieveParametersFromServer'));
+        if (!empty($errors)) {
+            Log::error('Saml2 error', $errors);
+            Session::flash('saml2_error', $errors);
             throw new \Exception("Could not log out");
         }
 
