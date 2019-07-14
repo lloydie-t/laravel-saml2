@@ -1,10 +1,10 @@
 {
-    "name": "nirajp/laravel-saml2",
+    "name": "lloydie-t/laravel-saml2",
     "description": "A Laravel package for Saml2 integration as a SP (service provider) for multiple IDPs. Forked from aacotroneo/laravel-saml2.",
     "keywords": ["laravel","saml", "saml2", "onelogin"],
     "homepage": "https://github.com/nirajp/laravel-saml2",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "authors": [
         {
             "name": "aacotroneo",
@@ -13,6 +13,10 @@
         {
             "name": "Niraj Patkar",
             "email": "niraj@alphonso.in"
+        },
+        {
+            "name": "Lloydie T",
+            "email": "lloydie.t@gmail.com"
         }
     ],
     "require": {
