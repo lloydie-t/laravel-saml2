@@ -13,8 +13,28 @@ The aim of this library is to be as simple as possible. We won't mess with Larav
 
 To install Saml2 as a Composer package to be used with Laravel 5, simply add this to your composer.json:
 
-```json
-"nirajp/laravel-saml2": "*"
+```php
+"repositories": [
+      {
+        "type": "package",
+        "package": {
+          "name": "lloydie-t/laravel-saml2",
+          "version": "0.0.1",
+          "type": "package",
+          "source": {
+              "url": "https://github.com/lloydie-t/laravel-saml2.git",
+              "type": "git",
+              "reference": "master"
+          }
+        }
+      }
+    ], 
+    "require": {
+        .........
+        "lloydie-t/laravel-saml2": "*",
+	.........
+    }
+    
 ```
 
 ..and run `composer update`.  Once it's installed, you can register the service provider in `app/config/app.php` in the `providers` array. If you want, you can add the alias saml2:
