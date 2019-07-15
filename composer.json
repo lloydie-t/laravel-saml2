@@ -31,7 +31,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Aacotroneo\\Saml2\\": "src"
+            "Aacotroneo\\Saml2\\": "src/Aacotroneo/Saml2"
         }
     },
     "extra": {
