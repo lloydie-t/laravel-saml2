@@ -33,12 +33,12 @@ To install Saml2 as a Composer package to be used with Laravel 5, simply add thi
 ```php
 'providers' => [
         ...
-    	'Aacotroneo\Saml2\Saml2ServiceProvider',
+    	Aacotroneo\Saml2\Saml2ServiceProvider::class,
 ]
 
 'alias' => [
         ...
-        'Saml2'     => 'Aacotroneo\Saml2\Facades\Saml2Auth',
+        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
 ]
 ```
 
