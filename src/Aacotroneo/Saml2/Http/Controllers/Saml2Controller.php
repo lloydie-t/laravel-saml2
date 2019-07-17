@@ -23,7 +23,7 @@ class Saml2Controller extends Controller
 
         $this->idp = explode('/',$request->path())[0];
         if (!$this->idp) {
-            $this->idp = 'test';
+            $this->idp = 'default';
         }
 
         $config = config('saml2.'.$this->idp.'_idp_settings');
