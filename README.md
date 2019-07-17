@@ -42,19 +42,19 @@ To install Saml2 as a Composer package to be used with Laravel 5, simply add thi
 ]
 ```
 
-Then publish the config files with `php artisan vendor:publish`. This will add the files `app/config/saml2_settings.php` & `app/config/saml2/test_idp_settings.php`. 
+Then publish the config files with `php artisan vendor:publish`. This will add the files `app/config/saml2_settings.php` & `app/config/saml2/default_idp_settings.php`. 
 
-The test_idp_settings.php config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty strightforward.
+The default_idp_settings.php config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty strightforward.
 
 ### Configuration
 
-Define names of all the IDPs you want to configure in saml2_settings.php. Keep 'test' as the first IDP, and add real IDPs after that.
+Define names of all the IDPs you want to configure in saml2_settings.php. Keep 'default' as the first IDP, and add real IDPs after that.
 
 ```php
-    'idpNames' => ['test', 'myidp1', 'myidp2'],
+    'idpNames' => ['default', 'myidp1', 'myidp2'],
 ```
 
-You will need to create a separate configuration file for each IDP under `app/config/saml2` folder. e.g. `myidp1_idp_settings.php`. You can use `test_idp_settings.php` as the starting point.
+You will need to create a separate configuration file for each IDP under `app/config/saml2` folder. e.g. `myidp1_idp_settings.php`. You can use `default_idp_settings.php` as the starting point.
 
 The only real difference between this config and the one that OneLogin uses, is that the SP entityId, assertionConsumerService url and singleLogoutService URL are injected by the library. They are taken from routes 'saml_metadata', 'saml_acs' and 'saml_sls' respectively.
 
