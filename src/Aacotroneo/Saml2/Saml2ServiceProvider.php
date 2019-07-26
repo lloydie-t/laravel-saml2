@@ -28,7 +28,7 @@ class Saml2ServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../../config/saml2_settings.php' => config_path('saml2_settings.php'),
-            __DIR__.'/../../config/test_idp_settings.php' => config_path('saml.test_idp_settings.php'),
+            __DIR__.'/../../config/default_idp_settings.php' => config_path('saml/default_idp_settings.php'),
         ]);
     }
 
