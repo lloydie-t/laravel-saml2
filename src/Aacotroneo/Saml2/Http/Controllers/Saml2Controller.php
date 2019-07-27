@@ -25,7 +25,7 @@ class Saml2Controller extends Controller
         $pathSegments = $request->segments();
         $this->idp = $pathSegments[count($pathSegments)-2];
         if (!$this->idp) {
-            $this->idp = 'test';
+            $this->idp = 'default';
         }
 
         $config = config('saml2.'.$this->idp.'_idp_settings');
