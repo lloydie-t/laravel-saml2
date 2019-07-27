@@ -43,22 +43,22 @@ For older versions of Laravel (<5.5), you have to add the service provider and a
 ]
 ```
 
-Then publish the config files with `php artisan vendor:publish --provider="Aacotroneo\Saml2\Saml2ServiceProvider"`. This will add the files `app/config/saml2_settings.php` & `app/config/saml2/test_idp_settings.php`.
+Then publish the config files with `php artisan vendor:publish --provider="Aacotroneo\Saml2\Saml2ServiceProvider"`. This will add the files `app/config/saml2_settings.php` & `app/config/saml2/default_idp_settings.php`.
 
-The test_idp_settings.php config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty strightforward.
+The default_idp_settings.php config is handled almost directly by  [OneLogin](https://github.com/onelogin/php-saml) so you may get further references there, but will cover here what's really necessary. There are some other config about routes you may want to check, they are pretty strightforward.
 
 ### Configuration
 
 #### Define the IDPs
-Define names of all the IDPs you want to configure in saml2_settings.php. Optionally keep 'test' as the first IDP if you want to use the simplesamlphp demo, and add real IDPs after that.
+Define names of all the IDPs you want to configure in saml2_settings.php. Optionally keep 'default' as the first IDP if you want to use the simplesamlphp demo, and add real IDPs after that.
 
 ```php
-    'idpNames' => ['test', 'myidp1', 'myidp2'],
+    'idpNames' => ['default', 'myidp1', 'myidp2'],
 ```
 
 #### Configure laravel-saml2 to know about each IDP
 
-You will need to create a separate configuration file for each IDP under `app/config/saml2/` folder. e.g. `myidp1_idp_settings.php`. You can use `test_idp_settings.php` as the starting point; just copy it to `app/config/saml2/` and rename it.
+You will need to create a separate configuration file for each IDP under `app/config/saml2/` folder. e.g. `myidp1_idp_settings.php`. You can use `default_idp_settings.php` as the starting point; just copy it to `app/config/saml2/` and rename it.
 
 Configuration options are note explained in this project as they come from the [OneLogin project](https://github.com/onelogin/php-saml), please refer there for details.
 
@@ -78,17 +78,17 @@ SAML2_SECONDIDP_SP_PRIVATEKEY="..."
 #### URLs To Pass to The IDP configuration
 You don't need to implement the SP entityId, assertionConsumerService url and singleLogoutService routes, because Saml2Controller already does, but you'll need to provide them to the configuration of your actual IDP, i.e. the 3rd party you are asking to authenticate users.
 
-You can check the actual routes in the metadata, by navigating to 'http://laravel_url/myidp1/metadata' / 'https://laravel_url/myidp1/metadata', which incidentally will be the entityId for this SP.
+You can check the actual routes in the metadata, by navigating to 'http://laravel_url/saml2/myidp1/metadata' / 'https://laravel_url/saml2/myidp1/metadata', which incidentally will be the entityId for this SP.
 
-If you configure the optional `routesPrefix` setting in saml2_settings.php, then all idp routes will be prefixed by that value, so you'll need to adjust the metadata url accordingly. For example, if you configure routesPrefix to be `'single_sign_on'`, then your IDP metadata for myidp1 will be found at http://laravel_url/single_sign_on/myidp1/metadata.
+If you configure the optional `routesPrefix` setting in saml2_settings.php, then all idp routes will be prefixed by that value, so you'll need to adjust the metadata url accordingly. For example, if you configure routesPrefix to be `'single_sign_on'`, then your IDP metadata for myidp1 will be found at http://laravel_url/saml2/single_sign_on/myidp1/metadata.
 
 #### Exampl: simplesamlphp IDP configuration
-For example, if you use simplesamlphp, and your metadata url is `http://laravel_url/myidp1/metadata`, add the following to /metadata/sp-remote.php to inform the IDP of your laravel-saml2 SP identity:
+For example, if you use simplesamlphp, and your metadata url is `http://laravel_url/saml2/myidp1/metadata`, add the following to /metadata/sp-remote.php to inform the IDP of your laravel-saml2 SP identity:
 
 ```php
-$metadata['http://laravel_url/myidp1/metadata'] = array(
-    'AssertionConsumerService' => 'http://laravel_url/myidp1/acs',
-    'SingleLogoutService' => 'http://laravel_url/myidp1/sls',
+$metadata['http://laravel_url/saml2/myidp1/metadata'] = array(
+    'AssertionConsumerService' => 'http://laravel_url/saml2/myidp1/acs',
+    'SingleLogoutService' => 'http://laravel_url/saml2/myidp1/sls',
     //the following two affect what the $Saml2user->getUserId() will return
     'NameIDFormat' => 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
     'simplesaml.nameidattribute' => 'uid' 
