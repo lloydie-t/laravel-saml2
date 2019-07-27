@@ -2,9 +2,9 @@
     "name": "lloydie-t/laravel-saml2",
     "description": "A Laravel package for Saml2 integration as a SP (service provider) for multiple IDPs. Forked from aacotroneo/laravel-saml2.",
     "keywords": ["laravel","saml", "saml2", "onelogin"],
-    "homepage": "https://github.com/nirajp/laravel-saml2",
+    "homepage": "https://github.com/lloydie-t/laravel-saml2",
     "license": "MIT",
-    "version": "0.0.2",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "aacotroneo",
@@ -15,7 +15,7 @@
             "email": "niraj@alphonso.in"
         },
         {
-            "name": "Lloydie T",
+            "name": "Lloyd Thomas",
             "email": "lloydie.t@gmail.com"
         }
     ],
@@ -30,8 +30,8 @@
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
-        "psr-4": {
-            "Aacotroneo\\Saml2\\": "src/Aacotroneo/Saml2"
+        "psr-0": {
+            "Aacotroneo\\Saml2\\": "src/"
         }
     },
     "extra": {
@@ -43,5 +43,6 @@
                 "Saml2": "Aacotroneo\\Saml2\\Facades\\Saml2Auth"
             }
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
